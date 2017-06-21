@@ -62,6 +62,8 @@ def main():
     for v in result[0]["data"].values():
         for log in v[0:max_download]:
             url = log["url"]
+            if verbose > 0:
+                print "downloading: %s" % (url)
             name = log["name"]
             r = requests.get(url)
             write_disk(name, r.content)
