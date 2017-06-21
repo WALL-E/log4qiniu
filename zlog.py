@@ -24,5 +24,5 @@ for v in result[0]["data"].values():
         url = log["url"]
         name = log["name"]
         r = requests.get(url)
-        with open(name.replace("/", "-"), "wb") as code:
+        with open(name.replace("v2/.", ""), "wb") as code:
              code.write(r.content)
