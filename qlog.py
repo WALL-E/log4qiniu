@@ -22,7 +22,7 @@ import requests
 import qiniu
 
 
-delay_days = -1
+delay_days = 1
 max_download = 24
 verbose = 0
 
