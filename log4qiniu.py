@@ -34,8 +34,8 @@ max_download = 48
 verbose = 0
 is_exited = False
 
-access_key = "Fd2PH4O-MVuRihnRO68kyTAg5agUZ5R_oo3DfxLN"
-secret_key = "PqXqGQo6MwyMEr_k9RiJ3e0LNQ0TbRthA7-IBPqQ"
+access_key = ""
+secret_key = ""
 
 def onsignal_term(signum, frame):
     global is_exited
