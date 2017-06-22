@@ -20,6 +20,7 @@ import json
 import logging
 import signal
 import os
+import sys
 from docopt import docopt
 import requests
 import qiniu
@@ -74,6 +75,9 @@ def main():
     cdn = qiniu.CdnManager(auth)
     logging.info("log4qiniu get data %s at %s" % (domains, log_date))
     result = cdn.get_log_list_data(domains, log_date)
+    if result[0] is None:
+        logging.error("log4qiniu download failed")
+        sys.exit(1)
 
     for v in result[0]["data"].values():
         for log in v[0:max_download]:
