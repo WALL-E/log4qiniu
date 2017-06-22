@@ -17,6 +17,7 @@ Options:
 
 import datetime
 import json
+import signal
 from docopt import docopt
 import requests
 import qiniu
@@ -25,9 +26,15 @@ import qiniu
 delay_days = 1
 max_download = 24
 verbose = 0
+is_exited = False
 
 access_key = "Fd2PH4O-MVuRihnRO68kyTAg5agUZ5R_oo3DfxLN"
 secret_key = "PqXqGQo6MwyMEr_k9RiJ3e0LNQ0TbRthA7-IBPqQ"
+
+def onsignal_term(signum, frame):
+    global is_exited
+    print ("Receive [%s] signal" % (signum))
+    is_exited = True
 
 def get_date(days):
     date = datetime.datetime.now() + datetime.timedelta(days=-days)
@@ -49,6 +56,7 @@ def rebuild_options(arguments):
         verbose += 1
 
 def main():
+    signal.signal(signal.SIGINT, onsignal_term)
     arguments = docopt(__doc__, version='1.0.0rc1')
     rebuild_options(arguments)
 
@@ -67,6 +75,8 @@ def main():
             name = log["name"]
             r = requests.get(url)
             write_disk(name, r.content)
+            if is_exited:
+                break
 
 if __name__ == '__main__':
     main()
