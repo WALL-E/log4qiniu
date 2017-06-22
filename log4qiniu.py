@@ -8,7 +8,7 @@ Usage:
 
 Options:
   --delay-days=1        Days of delayed Download, default is 1
-  --max-download=24    The maximum number of log files downloaded, default is 24
+  --max-download=48     The maximum number of log files downloaded, default is 48
   -h --help             show this help message and exit
   -v --verbose          print status messages
   --version             show version and exit
