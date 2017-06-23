@@ -91,7 +91,7 @@ def main():
             if is_exited:
                 break
 
-    cmd = "gunzip %s/*.gz" % (BASE_DIR)
+    cmd = "gunzip -f %s/*.gz" % (BASE_DIR)
     os.system(cmd)
 
     logging.debug("log4qiniu complate")
